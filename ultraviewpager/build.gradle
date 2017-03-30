@@ -78,7 +78,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.1.1@aar'
 }
 
-deployConfig = rootProject.file('jcenterInstall.gradle')
+File deployConfig = rootProject.file('jcenterInstall.gradle')
 if (deployConfig.exists()) {
     apply from: rootProject.file('jcenterInstall.gradle')
 }
