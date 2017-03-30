@@ -60,3 +60,5 @@ out/
 target/
 
 project.properties
+jcenterDeploy.gradle
+jcenterInstall.gradle

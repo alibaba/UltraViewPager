@@ -25,8 +25,30 @@
  */
 
 apply plugin: 'com.android.library'
-apply plugin: "maven"
-apply plugin: 'maven-publish'
+
+ext {
+    bintrayRepo = 'Tangram'
+    bintrayName = 'UltraViewPager'
+
+    publishedGroupId = GROUP
+    libraryName = ARTIFACT
+    artifact = ARTIFACT
+
+    libraryDescription = 'UltraViewPager is an extension for ViewPager to provide multiple features in a single ViewPager.'
+
+    siteUrl = 'https://github.com/alibaba/UltraViewPager'
+    gitUrl = 'https://github.com/alibaba/UltraViewPager.git'
+
+    libraryVersion = VERSION_NAME
+
+    developerId = 'longerian'
+    developerName = 'longerian'
+    developerEmail = 'xlhongultimate@gmail.com'
+
+    licenseName = 'MIT'
+    licenseUrl = 'https://opensource.org/licenses/MIT'
+    allLicenses = ["MIT"]
+}
 
 def VERSION = System.properties['version'] ?: '10'
 def VERSION_NAME = System.properties['versionName'] ?: '0.1.0'
@@ -56,3 +78,12 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.1.1@aar'
 }
 
+deployConfig = rootProject.file('jcenterInstall.gradle')
+if (deployConfig.exists()) {
+    apply from: rootProject.file('jcenterInstall.gradle')
+}
+
+deployConfig = rootProject.file('jcenterDeploy.gradle')
+if (deployConfig.exists()) {
+    apply from: rootProject.file('jcenterDeploy.gradle')
+}
