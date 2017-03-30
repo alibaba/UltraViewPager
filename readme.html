@@ -1,0 +1,397 @@
+<!doctype html>
+<!--
+  ~
+  ~  MIT License
+  ~
+  ~  Copyright (c) 2017 Alibaba Group
+  ~
+  ~  Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~  of this software and associated documentation files (the "Software"), to deal
+  ~  in the Software without restriction, including without limitation the rights
+  ~  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~  copies of the Software, and to permit persons to whom the Software is
+  ~  furnished to do so, subject to the following conditions:
+  ~
+  ~  The above copyright notice and this permission notice shall be included in all
+  ~  copies or substantial portions of the Software.
+  ~
+  ~  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~  SOFTWARE.
+  ~
+  -->
+
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    background-color: white;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {	
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;	
+}
+
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+</style>
+<title>UltraViewPager</title>
+
+</head>
+<body>
+<h3>UltraViewPager</h3>
+
+<hr />
+
+<h4>简介</h4>
+
+<p>UltraViewPager是一个聚合多种特性的ViewPager，主要目的是给一些频繁出现的场景提供一个高效统一的解决方案。<br/>
+UltraViewPager的特性包括：</p>
+
+<ul>
+<li>支持横 / 竖向滑动</li>
+<li>一屏内显示多页</li>
+<li>循环滚动</li>
+<li>定时滚动，计时器使用Handler实现</li>
+<li>设置ViewPager的最大宽高</li>
+<li>setRatio按比例显示UltraviewPager</li>
+<li>内置indicator，无需再为一个简单地indicator写一堆代码，只需简单设置几个属性就可以完成展示，支持圆点和Icon；相较JW大神ViewPagerIndicator的优势是在使用Icon时，ViewpagerIndicator是嵌套了一个HorizontalScrollView，而UltraViewPager是直接draw出来，减少了view的层级；</li>
+<li>内置两种PageTransformer特效</li>
+</ul>
+
+
+<p>以上特性支持同时使用；</p>
+
+<hr />
+
+<h4>使用方法</h4>
+
+<h5>1.设置横/竖向滑动</h5>
+
+<pre><code>    /**
+     * 设置滚动模式，包括水平滚动和竖直滚动
+     *
+     * @param scrollMode 
+     */
+    void setScrollMode(UltraViewPager.ScrollMode scrollMode);
+</code></pre>
+
+<p>scrollMode的值是 UltraViewPager.ScrollMode.HORIZONTAL 或 UltraViewPager.ScrollMode.VERTICAL，默认横向滑动；</p>
+
+<h5>2. 一屏内显示多页</h5>
+
+<pre><code>    /**
+     * 设置内部child的resId，用于获取child的大小，设置后会启用MultiScreen特性
+     *
+     * @param matchChildWithResId the child id
+     */
+    void setChildResId(int matchChildWithResId);
+</code></pre>
+
+<p>一屏内显示多页的一个条件是page中需要显示的view不是满屏，且有固定的宽高，使用时需用一个layout包裹需要显示的view，建议使用RelativeLayout嵌套view，然后把view设置center，setChildResId方法中的id是这里view的id；</p>
+
+<h5>3. 循环滚动</h5>
+
+<pre><code>    /**
+     * 设置无限循环
+     *
+     * @param enable 是否开启
+     */
+    void setInfiniteLoop(boolean enable);
+</code></pre>
+
+<p>没什么好说明的，看接口文档应该不难理解；</p>
+
+<h5>4. 定时滚动</h5>
+
+<pre><code>    /**
+     * 以特定的间隔时间开始自动翻页
+     *
+     * @param intervalInMillis page的自动翻页间隔时间
+     */
+    void setAutoScroll(int intervalInMillis);
+
+    /**
+     * 停止自动翻页
+     */
+    void disableAutoScroll();
+</code></pre>
+
+<p>注意setAutoScroll的参数单位是 毫秒；</p>
+
+<h5>5. 设置UltraViewPager的最大宽高</h5>
+
+<pre><code>    /**
+     * 设置ViewPager的最大宽度
+     *
+     * @param width 宽度
+     */
+    void setMaxWidth(int width);
+
+    /**
+     * 设置ViewPager的最大高度
+     *
+     * @param height 高度
+     */
+    void setMaxHeight(int height);
+</code></pre>
+
+<h5>6. 设置比例</h5>
+
+<pre><code>    /**
+     * 以设定的 宽/高 比例来绘制UltraViewPager
+     *
+     * @param ratio
+     */
+    void setRatio(float ratio);
+</code></pre>
+
+<h5>7. Indicator</h5>
+
+<p>UltraViewPager的indicator支持两种样式，圆点和Icon：<br/>
+<img src="https://img.alicdn.com/tps/TB1KXE_KFXXXXb9XVXXXXXXXXXX-384-77.png" width=200/><br/>
+<img src="https://img.alicdn.com/tps/TB17TXxKVXXXXaKXXXXXXXXXXXX-242-54.png" width=200/><br/>
+indicator同样支持横向和竖向两种方式：<br/>
+<img src="https://img.alicdn.com/tps/TB15QBgKVXXXXbMXFXXXXXXXXXX-33-117.png" height=200/><br/>
+initIndicator的调用会返回IUltraIndicatorBuilder，故indicator支持链式调用，不过需要注意的是调用完initIndicator之后需要调用build()完成indicator的建立；</p>
+
+<pre><code>/**
+ * 初始化indicator，支持链式set属性，focusColor, normalColor是必设属性，否则indicator不会显示
+ *
+ * @return
+ */
+IUltraIndicatorBuilder initIndicator();
+
+/**
+ * 使用一些基础值创建indicator, 需自己调用build完成创建
+ *
+ * @param focusColor    indicator被选中的颜色
+ * @param normalColor   indicator未被选中的颜色
+ * @param radiusInPixel indicator的半径
+ * @param gravity       indicator的布局位置，使用android.view.Gravity，支持组合使用，如：Gravity.BOTTOM | Gravity.RIGHT
+ */
+IUltraIndicatorBuilder initIndicator(int focusColor, int normalColor, int radiusInPixel, int gravity);
+
+/**
+ * 使用一些基础值创建indicator, 需自己调用build完成创建
+ *
+ * @param focusColor    indicator被选中的颜色
+ * @param normalColor   indicator未被选中的颜色
+ * @param strokeColor   边框颜色
+ * @param strokeWidth   边框大小
+ * @param radiusInPixel indicator的半径
+ * @param gravity       indicator的布局位置，使用android.view.Gravity，支持组合使用，如：Gravity.BOTTOM | Gravity.RIGHT
+ */
+IUltraIndicatorBuilder initIndicator(int focusColor, int normalColor, int strokeColor, int strokeWidth, int radiusInPixel, int gravity);
+
+/**
+ * 使用一些基础值创建indicator, 需自己调用build完成创建
+ *
+ * @param focusResId  indicator被选中的图片资源id
+ * @param normalResId indicator未被选中的图片资源id
+ * @param gravity     indicator的布局位置，使用android.view.Gravity，支持组合使用，如：Gravity.BOTTOM | Gravity.RIGHT
+ */
+IUltraIndicatorBuilder initIndicator(int focusResId, int normalResId, int gravity);
+
+/**
+ * 移除indicator
+ */
+void disableIndicator();
+</code></pre>
+
+<p>以下是IUltraIndicatorBuilder的相关接口方法：</p>
+
+<pre><code>IUltraIndicatorBuilder setFocusColor(int focusColor);
+
+IUltraIndicatorBuilder setNormalColor(int normalColor);
+
+IUltraIndicatorBuilder setStrokeColor(int strokeColor);
+
+IUltraIndicatorBuilder setStrokeWidth(int strokeWidth);
+
+/**
+ * indicator的item之间的间距，默认是item的宽度
+ * @param indicatorPadding
+ * @return
+ */
+IUltraIndicatorBuilder setIndicatorPadding(int indicatorPadding);
+
+IUltraIndicatorBuilder setRadius(int radius);
+
+IUltraIndicatorBuilder setOrientation(UltraViewPager.Orientation orientation);
+
+/**
+ * 使用android.view.Gravity，支持组合使用，如：Gravity.BOTTOM | Gravity.RIGHT
+ *
+ * @param gravity android.view.Gravity
+ * @return
+ */
+IUltraIndicatorBuilder setGravity(int gravity);
+
+IUltraIndicatorBuilder setFocusResId(int focusResId);
+
+IUltraIndicatorBuilder setNormalResId(int normalResId);
+
+IUltraIndicatorBuilder setMargin(int left, int top, int right, int bottom);
+
+void build();
+</code></pre>
+
+<h5>8. PageTransformer</h5>
+
+<p>竖向滑动暂不支持设置PageTransformer，待后续解决；以下是几个demo：<br/>
+<img src="http://aligitlab.oss-cn-hangzhou-zmf.aliyuncs.com/uploads/huangyu.hy/UltraViewPager/cdc86cea2b/demo.gif" width=200/>
+<img src="http://aligitlab.oss-cn-hangzhou-zmf.aliyuncs.com/uploads/huangyu.hy/UltraViewPager/b41ca86d08/demo2.gif" width=200/></p>
+
+<hr />
+
+<h4>组件设计说明</h4>
+
+<p>因需要把indicator内置，所以UltraViewPager的实现方式比较特殊，是继承自RelativeLayout，然后将ViewPager和indicator置于其中，同时UltraViewPager提供了一些ViewPager常用方法的代理，这样在日常使用上保持和ViewPager无差异，如果需要调用ViewPager的所有方法，可通过getViewPager()方法拿到真正的ViewPager进行操作.</p>
+
+<p>竖向滑动是通过在ViewPager的onInterceptTouchEvent和onTouchEvent中交换横竖向的eventLocation，同时设置特殊PageTransformer实现，详见源码.</p>
+</body>
+</html>
