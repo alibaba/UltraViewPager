@@ -98,6 +98,9 @@ Api接口详情请参考[文档](ATTRIBUTES-ch.md)
 
 [Demo工程](https://github.com/alibaba/UltraViewPager/tree/master/sample)
 
+# 贡献代码
+
+在提 Issue 或者 PR 之前，建议先阅读[Contributing Guide](CONTRIBUTING.md)。按照规范提建议。
 
 #### 开源许可证
 

@@ -100,8 +100,11 @@ For other API reference,see [this](ATTRIBUTES.md) to read more.
 
 #### DEMO
 
-[Demo工程](https://github.com/alibaba/UltraViewPager/tree/master/sample)
+[Demo Project](https://github.com/alibaba/UltraViewPager/tree/master/examples)
 
+# Contributing
+
+Before you open an issue or create a pull request, please read [Contributing Guide](CONTRIBUTING.md) first.
 
 #### LICENSE
 `UltraViewPager` is available under the MIT license.
