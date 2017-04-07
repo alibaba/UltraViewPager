@@ -4,10 +4,10 @@
 
 Project`UltraViewPager` is a ViewPager extension that encapsulates multiple features, mainly to provide a unified solution for multi-page switching scenarios.
 
-![Example0](pics/example0.gif)
-![Example1](pics/example1.gif)
-![Example0](pics/example2.gif)
-![Example1](pics/example3.gif)
+![Example0](pics/pics1.gif)
+![Example1](pics/pics2.gif)
+![Example0](pics/pics3.gif)
+![Example1](pics/pics4.gif)
 
 
 #### Main Feature

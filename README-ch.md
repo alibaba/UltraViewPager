@@ -4,10 +4,10 @@
 #### 简介
 UltraViewPager是一个封装多种特性的ViewPager，主要是为多页面切换场景提供统一解决方案。
 
-![Example0](pics/example0.gif)
-![Example1](pics/example1.gif)
-![Example0](pics/example2.gif)
-![Example1](pics/example3.gif)
+![Example0](pics/pics1.gif)
+![Example1](pics/pics2.gif)
+![Example0](pics/pics3.gif)
+![Example1](pics/pics4.gif)
 
 #### 主要功能
 
