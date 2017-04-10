@@ -448,4 +448,12 @@ public class UltraViewPager extends RelativeLayout implements IUltraViewPagerFea
         timer.removeCallbacksAndMessages(null);
         timer.listener = null;
     }
+
+    @Override
+    public void setInfiniteRatio(int infiniteRatio) {
+        if (viewPager.getAdapter() != null
+                && viewPager.getAdapter() instanceof UltraViewPagerAdapter) {
+            ((UltraViewPagerAdapter) viewPager.getAdapter()).setInfiniteRatio(infiniteRatio);
+        }
+    }
 }

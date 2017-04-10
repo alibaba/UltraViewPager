@@ -70,7 +70,6 @@ interface IUltraViewPagerFeature {
     IUltraIndicatorBuilder initIndicator(int focusResId, int normalResId, int gravity);
 
     /**
-     *
      * @param focusBitmap  defines the bitmap when indicator is focused
      * @param normalBitmap defines the bitmap when indicator is in the default state (not focused).
      * @param gravity      specifies how to align the indicator. for example, using Gravity.BOTTOM | Gravity.RIGHT
@@ -79,14 +78,14 @@ interface IUltraViewPagerFeature {
     IUltraIndicatorBuilder initIndicator(Bitmap focusBitmap, Bitmap normalBitmap, int gravity);
 
     /**
-     *  Remove indicator
+     * Remove indicator
      */
     void disableIndicator();
 
     /**
      * Enable auto-scroll mode
      *
-     * @param intervalInMillis  The interval time to scroll in milliseconds.
+     * @param intervalInMillis The interval time to scroll in milliseconds.
      */
     void setAutoScroll(int intervalInMillis);
 
@@ -105,7 +104,7 @@ interface IUltraViewPagerFeature {
     /**
      * Supply a maximum width for this ViewPager.
      *
-     * @param width  width
+     * @param width width
      */
     void setMaxWidth(int width);
 
@@ -148,7 +147,7 @@ interface IUltraViewPagerFeature {
     void setMultiScreen(float ratio);
 
     /**
-     *  Adjust the height of the ViewPager to the height of child automatically.
+     * Adjust the height of the ViewPager to the height of child automatically.
      */
     void setAutoMeasureHeight(boolean status);
 
@@ -172,8 +171,15 @@ interface IUltraViewPagerFeature {
     /**
      * Set margins for this ViewPager
      *
-     * @param left the left margin in pixels
+     * @param left  the left margin in pixels
      * @param right the right margin in pixels
      */
     void setScrollMargin(int left, int right);
+
+    /**
+     * The items.size() would be scale to item.size()*infiniteRatio in fact
+     *
+     * @param infiniteRatio
+     */
+    void setInfiniteRatio(int infiniteRatio);
 }
