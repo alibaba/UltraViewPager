@@ -32,7 +32,7 @@ UltraViewPager继承自RelativeLayout，将ViewPager和indicator置于其中，�
 
 ```
 //gradle
-compile ('com.alibaba.android:ultraviewpager:1.0.0@aar') {
+compile ('com.alibaba.android:ultraviewpager:1.0.1@aar') {
 	transitive = true
 }
 
@@ -45,7 +45,7 @@ compile ('com.alibaba.android:ultraviewpager:1.0.0@aar') {
 <dependency>
   <groupId>com.alibaba.android</groupId>
   <artifactId>ultraviewpager</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <type>aar</type>
 </dependency>
 

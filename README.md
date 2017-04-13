@@ -37,7 +37,7 @@ Using Gradle:
 
 ```
 //gradle
-compile ('com.alibaba.android:ultraviewpager:1.0.0@aar') {
+compile ('com.alibaba.android:ultraviewpager:1.0.1@aar') {
 	transitive = true
 }
 ```
@@ -48,7 +48,7 @@ or grab via Maven:
 <dependency>
   <groupId>com.alibaba.android</groupId>
   <artifactId>ultraviewpager</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <type>aar</type>
 </dependency>
 
