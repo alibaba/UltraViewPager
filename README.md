@@ -31,7 +31,7 @@ In order to achieve vertical scroll, through exchanging MotionEvent in onInterce
 
 #### Usage
 
-Please find the latest version(1.0.0 so far) in maven repository. The newest version has been upload to jcenter and MavenCantral, make sure you have added at least one of these repositories.
+Please find the latest version(1.0.1 so far) in maven repository. The newest version has been upload to jcenter and MavenCantral, make sure you have added at least one of these repositories.
 
 Using Gradle:
 
