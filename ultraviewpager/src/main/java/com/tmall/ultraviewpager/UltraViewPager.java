@@ -395,7 +395,7 @@ public class UltraViewPager extends RelativeLayout implements IUltraViewPagerFea
 
     public void setOnPageChangeListener(ViewPager.OnPageChangeListener listener) {
         if (pagerIndicator == null) {
-            viewPager.setOnPageChangeListener(listener);
+            viewPager.addOnPageChangeListener(listener);
         } else {
             pagerIndicator.setPageChangeListener(listener);
         }
