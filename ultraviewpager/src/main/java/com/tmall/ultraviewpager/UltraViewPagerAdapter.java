@@ -49,7 +49,7 @@ class UltraViewPagerAdapter extends PagerAdapter {
         void resetPosition();
     }
 
-    private static final int INFINITE_RATIO = 4;
+    private static final int INFINITE_RATIO = 400;
     public static final String MULTISCR_TAG = "multi_scr_tag_";
 
     private PagerAdapter adapter;
