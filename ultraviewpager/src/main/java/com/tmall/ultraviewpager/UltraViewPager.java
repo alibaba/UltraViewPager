@@ -210,9 +210,9 @@ public class UltraViewPager extends RelativeLayout implements IUltraViewPagerFea
         if (timer != null) {
             final int action = ev.getAction();
             if (action == MotionEvent.ACTION_DOWN)
-                timer.isInTouchMode = true;
+                stopTimer();
             if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL)
-                timer.isInTouchMode = false;
+                startTimer();
         }
         return super.dispatchTouchEvent(ev);
     }
@@ -435,18 +435,20 @@ public class UltraViewPager extends RelativeLayout implements IUltraViewPagerFea
     }
 
     private void startTimer() {
-        if (timer == null)
+        if (timer == null || !timer.isStopped)
             return;
         timer.listener = mTimerHandlerListener;
         timer.removeCallbacksAndMessages(null);
         timer.sendEmptyMessageDelayed(TimerHandler.MSG_TIMER_ID, timer.interval);
+        timer.isStopped = false;
     }
 
     private void stopTimer() {
-        if (timer == null)
+        if (timer == null || timer.isStopped)
             return;
         timer.removeCallbacksAndMessages(null);
         timer.listener = null;
+        timer.isStopped = true;
     }
 
     @Override

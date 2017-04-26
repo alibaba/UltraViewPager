@@ -38,7 +38,7 @@ class TimerHandler extends Handler {
     }
 
     long interval;
-    boolean isInTouchMode;
+    boolean isStopped = true;
     TimerHandlerListener listener;
 
     static final int MSG_TIMER_ID = 87108;
@@ -51,7 +51,7 @@ class TimerHandler extends Handler {
     @Override
     public void handleMessage(Message msg) {
         if (MSG_TIMER_ID == msg.what) {
-            if (listener != null && !isInTouchMode)
+            if (listener != null)
                 listener.callBack();
             sendEmptyMessageDelayed(MSG_TIMER_ID, interval);
         }
