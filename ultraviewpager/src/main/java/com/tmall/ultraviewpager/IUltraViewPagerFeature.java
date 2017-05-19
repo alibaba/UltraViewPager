@@ -159,6 +159,13 @@ interface IUltraViewPagerFeature {
     void setItemRatio(double ratio);
 
     /**
+     * Set the gap between two pages in pixel
+     *
+     * @param pixel
+     */
+    void setHGap(int pixel);
+
+    /**
      * Set item margin
      *
      * @param left   the left margin in pixels

@@ -333,6 +333,13 @@ public class UltraViewPager extends RelativeLayout implements IUltraViewPagerFea
     }
 
     @Override
+    public void setHGap(int pixel) {
+        int screenWidth = getContext().getResources().getDisplayMetrics().widthPixels;
+        viewPager.setMultiScreen((screenWidth - pixel) / (float) screenWidth);
+        viewPager.setPageMargin(pixel);
+    }
+
+    @Override
     public void setMaxHeight(int height) {
         maxHeight = height;
     }
