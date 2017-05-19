@@ -30,6 +30,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Point;
+import android.os.Build;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
@@ -126,6 +127,12 @@ public class UltraViewPager extends RelativeLayout implements IUltraViewPagerFea
 
     private void initView() {
         viewPager = new UltraViewPagerView(getContext());
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            viewPager.setId(viewPager.hashCode());
+        } else {
+            viewPager.setId(View.generateViewId());
+        }
+
         addView(viewPager, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
     }
 
@@ -395,7 +402,7 @@ public class UltraViewPager extends RelativeLayout implements IUltraViewPagerFea
 
     public void setOnPageChangeListener(ViewPager.OnPageChangeListener listener) {
         if (pagerIndicator == null) {
-            viewPager.setOnPageChangeListener(listener);
+            viewPager.addOnPageChangeListener(listener);
         } else {
             pagerIndicator.setPageChangeListener(listener);
         }
