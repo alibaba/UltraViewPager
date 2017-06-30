@@ -352,6 +352,7 @@ public class UltraViewPager extends RelativeLayout implements IUltraViewPagerFea
     @Override
     public void scrollNextPage() {
         if (viewPager != null && viewPager.getAdapter() != null && viewPager.getAdapter().getCount() > 0) {
+        	viewPager.getAdapter().notifyDataSetChanged();
             final int curr = viewPager.getCurrentItemFake();
             int nextPage = 0;
             if (curr < viewPager.getAdapter().getCount() - 1) {
