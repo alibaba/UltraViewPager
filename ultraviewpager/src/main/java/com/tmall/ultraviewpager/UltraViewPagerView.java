@@ -26,17 +26,15 @@
 
 package com.tmall.ultraviewpager;
 
-import com.tmall.ultraviewpager.transformer.UltraVerticalTransformer;
-
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import com.tmall.ultraviewpager.transformer.UltraVerticalTransformer;
 
 /**
  * Created by mikeafc on 15/11/25.
@@ -85,7 +83,6 @@ public class UltraViewPagerView extends ViewPager implements UltraViewPagerAdapt
     }
 
     protected void onMeasurePage(int widthMeasureSpec, int heightMeasureSpec) {
-        Log.d("TEST","onMeasurePage"+getCurrentItem());
         View child = pagerAdapter.getViewAtPosition(getCurrentItem());
         if (child == null) {
             child = getChildAt(0);
