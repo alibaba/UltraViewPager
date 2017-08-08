@@ -49,20 +49,21 @@ class UltraViewPagerAdapter extends PagerAdapter {
         void resetPosition();
     }
 
-    private static final int INFINITE_RATIO = 4;
-    public static final String MULTISCR_TAG = "multi_scr_tag_";
+    private static final int INFINITE_RATIO = 400;
 
     private PagerAdapter adapter;
     private boolean enableLoop;
     private float multiScrRatio = Float.NaN;
     private boolean hasCentered; //ensure that the first item is in the middle when enabling loop-mode
     private int scrWidth;
+    private int infiniteRatio;
     private UltraViewPagerCenterListener centerListener;
 
     private SparseArray viewArray = new SparseArray();
 
     public UltraViewPagerAdapter(PagerAdapter adapter) {
         this.adapter = adapter;
+        infiniteRatio = INFINITE_RATIO;
     }
 
     @Override
@@ -72,7 +73,7 @@ class UltraViewPagerAdapter extends PagerAdapter {
             if (adapter.getCount() == 0) {
                 count = 0;
             } else {
-                count = adapter.getCount() *INFINITE_RATIO;
+                count = adapter.getCount() * infiniteRatio;
             }
         } else {
             count = adapter.getCount();
@@ -261,5 +262,9 @@ class UltraViewPagerAdapter extends PagerAdapter {
 
     void setCenterListener(UltraViewPagerCenterListener listener) {
         centerListener = listener;
+    }
+
+    void setInfiniteRatio(int infiniteRatio) {
+        this.infiniteRatio = infiniteRatio;
     }
 }

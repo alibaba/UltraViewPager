@@ -36,6 +36,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
+
 /**
  * Created by mikeafc on 15/11/25.
  */
@@ -127,16 +128,16 @@ public class UltraViewPagerIndicator extends View implements ViewPager.OnPageCha
         if (orientation == UltraViewPager.Orientation.HORIZONTAL) {
             longSize = viewPager.getWidth();
             shortSize = viewPager.getHeight();
-            longPaddingBefore = (int) (getItemWidth() + getPaddingLeft() + marginLeft);
+            longPaddingBefore = getPaddingLeft() + marginLeft;
             longPaddingAfter = getPaddingRight() + marginRight;
-            shortPaddingBefore = (int) (getItemWidth() + getPaddingTop() + marginTop);
+            shortPaddingBefore = getPaddingTop() + marginTop;
             shortPaddingAfter = (int) paintStroke.getStrokeWidth() + getPaddingBottom() + marginBottom;
         } else {
             longSize = viewPager.getHeight();
             shortSize = viewPager.getWidth();
-            longPaddingBefore = (int) (getItemWidth() + getPaddingTop() + marginTop);
+            longPaddingBefore = getPaddingTop() + marginTop;
             longPaddingAfter = (int) paintStroke.getStrokeWidth() + getPaddingBottom() + marginBottom;
-            shortPaddingBefore = (int) (getItemWidth() + getPaddingLeft() + marginLeft);
+            shortPaddingBefore = getPaddingLeft() + marginLeft;
             shortPaddingAfter = getPaddingRight() + marginRight;
         }
 
@@ -149,7 +150,7 @@ public class UltraViewPagerIndicator extends View implements ViewPager.OnPageCha
         float shortOffset = shortPaddingBefore;
         float longOffset = longPaddingBefore;
 
-        final float indicatorLength = count * itemWidth * widthRatio + (count - 1) * indicatorPadding;
+        final float indicatorLength = (count - 1) * (itemWidth * widthRatio + indicatorPadding);
 
         final int horizontalGravityMask = gravity & Gravity.HORIZONTAL_GRAVITY_MASK;
         final int verticalGravityMask = gravity & Gravity.VERTICAL_GRAVITY_MASK;
@@ -159,13 +160,14 @@ public class UltraViewPagerIndicator extends View implements ViewPager.OnPageCha
                 break;
             case Gravity.RIGHT:
                 if (orientation == UltraViewPager.Orientation.HORIZONTAL) {
-                    longOffset = longSize - longPaddingAfter - indicatorLength;
+                    longOffset = longSize - longPaddingAfter - indicatorLength - itemWidth;
                 }
                 if (orientation == UltraViewPager.Orientation.VERTICAL) {
                     shortOffset = shortSize - shortPaddingAfter - itemWidth;
                 }
                 break;
             case Gravity.LEFT:
+                longOffset += itemWidth;
             default:
                 break;
         }
@@ -183,6 +185,7 @@ public class UltraViewPagerIndicator extends View implements ViewPager.OnPageCha
                 }
                 break;
             case Gravity.TOP:
+                shortOffset += itemWidth;
             default:
                 break;
         }
@@ -202,6 +205,7 @@ public class UltraViewPagerIndicator extends View implements ViewPager.OnPageCha
         //Draw stroked circles
         for (int iLoop = 0; iLoop < count; iLoop++) {
             float drawLong = longOffset + (iLoop * (itemWidth * widthRatio + indicatorPadding));
+
             if (orientation == UltraViewPager.Orientation.HORIZONTAL) {
                 dX = drawLong;
                 dY = shortOffset;
@@ -387,7 +391,7 @@ public class UltraViewPagerIndicator extends View implements ViewPager.OnPageCha
 
     @Override
     public void build() {
-        if(indicatorBuildListener != null){
+        if (indicatorBuildListener != null) {
             indicatorBuildListener.build();
         }
     }

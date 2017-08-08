@@ -103,6 +103,7 @@ public class PagerActivity extends Activity implements AdapterView.OnItemSelecte
                 ultraViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
                 adapter = new UltraPagerAdapter(false);
                 ultraViewPager.setAdapter(adapter);
+                ultraViewPager.setInfiniteRatio(100);
                 gravity_indicator = UltraViewPager.Orientation.HORIZONTAL;
                 break;
             case 2:

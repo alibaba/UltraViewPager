@@ -31,13 +31,13 @@ In order to achieve vertical scroll, through exchanging MotionEvent in onInterce
 
 #### Usage
 
-Please find the latest version(1.0.0 so far) in maven repository. The newest version has been upload to jcenter and MavenCantral, make sure you have added at least one of these repositories.
+Please find the latest version(1.0.4 so far) in maven repository. The newest version has been upload to jcenter and MavenCantral, make sure you have added at least one of these repositories.
 
 Using Gradle:
 
 ```
 //gradle
-compile ('com.alibaba.android:ultraviewpager:1.0.0@aar') {
+compile ('com.alibaba.android:ultraviewpager:1.0.4@aar') {
 	transitive = true
 }
 ```
@@ -48,7 +48,7 @@ or grab via Maven:
 <dependency>
   <groupId>com.alibaba.android</groupId>
   <artifactId>ultraviewpager</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.4</version>
   <type>aar</type>
 </dependency>
 

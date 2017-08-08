@@ -218,11 +218,10 @@ public class UltraViewPager extends RelativeLayout implements IUltraViewPagerFea
         if (timer != null) {
             final int action = ev.getAction();
             if (action == MotionEvent.ACTION_DOWN) {
-                timer.isInTouchMode = true;
+                stopTimer();
             }
             if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
-                timer.isInTouchMode = false;
-            }
+                startTimer();
         }
         return super.dispatchTouchEvent(ev);
     }
@@ -350,6 +349,13 @@ public class UltraViewPager extends RelativeLayout implements IUltraViewPagerFea
     }
 
     @Override
+    public void setHGap(int pixel) {
+        int screenWidth = getContext().getResources().getDisplayMetrics().widthPixels;
+        viewPager.setMultiScreen((screenWidth - pixel) / (float) screenWidth);
+        viewPager.setPageMargin(pixel);
+    }
+
+    @Override
     public void setMaxHeight(int height) {
         maxHeight = height;
     }
@@ -459,21 +465,31 @@ public class UltraViewPager extends RelativeLayout implements IUltraViewPagerFea
     }
 
     private void startTimer() {
-        if (timer == null || viewPager == null) {
+        if (timer == null || viewPager == null || !timer.isStopped)
             return;
         }
         viewPager.addOnPageChangeListener(timer);
         timer.listener = mTimerHandlerListener;
         timer.removeCallbacksAndMessages(null);
-        timer.startTimer();
+		timer.startTimer();
+        timer.isStopped = false;
     }
 
     private void stopTimer() {
-        if (timer == null || viewPager == null) {
+        if (timer == null  || viewPager == null || timer.isStopped) {s
             return;
         }
         viewPager.removeOnPageChangeListener(timer);
         timer.removeCallbacksAndMessages(null);
         timer.listener = null;
+        timer.isStopped = true;
+    }
+
+    @Override
+    public void setInfiniteRatio(int infiniteRatio) {
+        if (viewPager.getAdapter() != null
+                && viewPager.getAdapter() instanceof UltraViewPagerAdapter) {
+            ((UltraViewPagerAdapter) viewPager.getAdapter()).setInfiniteRatio(infiniteRatio);
+        }
     }
 }

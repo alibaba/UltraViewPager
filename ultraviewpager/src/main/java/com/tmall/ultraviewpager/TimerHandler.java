@@ -42,7 +42,7 @@ class TimerHandler extends Handler implements ViewPager.OnPageChangeListener {
 
     SparseIntArray specialInterval;
     long interval;
-    boolean isInTouchMode;
+    boolean isStopped = true;
     TimerHandlerListener listener;
     UltraViewPager mUltraViewPager;
     private int currentPosition = 0;
@@ -58,7 +58,7 @@ class TimerHandler extends Handler implements ViewPager.OnPageChangeListener {
     @Override
     public void handleMessage(Message msg) {
         if (MSG_TIMER_ID == msg.what) {
-            if (listener != null && !isInTouchMode) {
+            if (listener != null) {
                 listener.callBack();
             }
         }
