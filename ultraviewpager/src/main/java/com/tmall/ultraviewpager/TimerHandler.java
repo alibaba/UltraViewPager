@@ -28,13 +28,12 @@ package com.tmall.ultraviewpager;
 
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.view.ViewPager;
 import android.util.SparseIntArray;
 
 /**
  * Created by mikeafc on 15/11/25.
  */
-class TimerHandler extends Handler implements ViewPager.OnPageChangeListener {
+class TimerHandler extends Handler {
 
     interface TimerHandlerListener {
         void callBack();
@@ -45,7 +44,6 @@ class TimerHandler extends Handler implements ViewPager.OnPageChangeListener {
     boolean isStopped = true;
     TimerHandlerListener listener;
     UltraViewPager mUltraViewPager;
-    private int currentPosition = 0;
 
     static final int MSG_TIMER_ID = 87108;
 
@@ -58,20 +56,22 @@ class TimerHandler extends Handler implements ViewPager.OnPageChangeListener {
     @Override
     public void handleMessage(Message msg) {
         if (MSG_TIMER_ID == msg.what) {
+            int nextIndex = mUltraViewPager.getNextItem();
             if (listener != null) {
                 listener.callBack();
             }
+            tick(nextIndex);
         }
     }
 
-    public void startTimer() {
-        sendEmptyMessageDelayed(TimerHandler.MSG_TIMER_ID, getNextInterval());
+    public void tick(int index) {
+        sendEmptyMessageDelayed(TimerHandler.MSG_TIMER_ID, getNextInterval(index));
     }
 
-    private long getNextInterval() {
+    private long getNextInterval(int index) {
         long next = interval;
         if (specialInterval != null) {
-            long has = specialInterval.get(currentPosition, -1);
+            long has = specialInterval.get(index, -1);
             if (has > 0) {
                 next = has;
             }
@@ -79,18 +79,4 @@ class TimerHandler extends Handler implements ViewPager.OnPageChangeListener {
         return next;
     }
 
-    @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-    }
-
-    @Override
-    public void onPageSelected(int position) {
-        currentPosition = mUltraViewPager.getCurrentItem();
-        sendEmptyMessageDelayed(MSG_TIMER_ID, getNextInterval());
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int state) {
-    }
 }

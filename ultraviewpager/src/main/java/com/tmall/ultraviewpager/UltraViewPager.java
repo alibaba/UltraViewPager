@@ -34,6 +34,7 @@ import android.os.Build;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.MotionEvent;
 import android.view.View;
@@ -444,6 +445,10 @@ public class UltraViewPager extends RelativeLayout implements IUltraViewPagerFea
         return viewPager.getCurrentItem();
     }
 
+    public int getNextItem() {
+        return viewPager.getNextItem();
+    }
+
     public void setPageTransformer(boolean reverseDrawingOrder, ViewPager.PageTransformer transformer) {
         viewPager.setPageTransformer(reverseDrawingOrder, transformer);
     }
@@ -469,10 +474,9 @@ public class UltraViewPager extends RelativeLayout implements IUltraViewPagerFea
         if (timer == null || viewPager == null || !timer.isStopped) {
             return;
         }
-        viewPager.addOnPageChangeListener(timer);
         timer.listener = mTimerHandlerListener;
         timer.removeCallbacksAndMessages(null);
-		timer.startTimer();
+		timer.tick(0);
         timer.isStopped = false;
     }
 
@@ -480,7 +484,6 @@ public class UltraViewPager extends RelativeLayout implements IUltraViewPagerFea
         if (timer == null  || viewPager == null || timer.isStopped) {
             return;
         }
-        viewPager.removeOnPageChangeListener(timer);
         timer.removeCallbacksAndMessages(null);
         timer.listener = null;
         timer.isStopped = true;
@@ -493,4 +496,5 @@ public class UltraViewPager extends RelativeLayout implements IUltraViewPagerFea
             ((UltraViewPagerAdapter) viewPager.getAdapter()).setInfiniteRatio(infiniteRatio);
         }
     }
+
 }

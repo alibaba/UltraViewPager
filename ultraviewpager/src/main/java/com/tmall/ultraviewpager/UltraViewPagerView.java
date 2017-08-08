@@ -221,6 +221,13 @@ public class UltraViewPagerView extends ViewPager implements UltraViewPagerAdapt
         return super.getCurrentItem();
     }
 
+    public int getNextItem() {
+        if (pagerAdapter.getCount() != 0) {
+            int next = super.getCurrentItem() + 1;
+            return next % pagerAdapter.getRealCount();
+        }
+        return 0;
+    }
 
     /**
      * Set the currently selected page.
