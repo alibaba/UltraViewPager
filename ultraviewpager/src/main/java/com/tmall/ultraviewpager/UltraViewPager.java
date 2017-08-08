@@ -222,6 +222,7 @@ public class UltraViewPager extends RelativeLayout implements IUltraViewPagerFea
             }
             if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
                 startTimer();
+            }
         }
         return super.dispatchTouchEvent(ev);
     }
@@ -465,7 +466,7 @@ public class UltraViewPager extends RelativeLayout implements IUltraViewPagerFea
     }
 
     private void startTimer() {
-        if (timer == null || viewPager == null || !timer.isStopped)
+        if (timer == null || viewPager == null || !timer.isStopped) {
             return;
         }
         viewPager.addOnPageChangeListener(timer);
@@ -476,7 +477,7 @@ public class UltraViewPager extends RelativeLayout implements IUltraViewPagerFea
     }
 
     private void stopTimer() {
-        if (timer == null  || viewPager == null || timer.isStopped) {s
+        if (timer == null  || viewPager == null || timer.isStopped) {
             return;
         }
         viewPager.removeOnPageChangeListener(timer);
