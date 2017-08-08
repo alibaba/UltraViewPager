@@ -28,22 +28,29 @@ package com.tmall.ultraviewpager;
 
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.view.ViewPager;
+import android.util.SparseIntArray;
 
 /**
  * Created by mikeafc on 15/11/25.
  */
-class TimerHandler extends Handler {
+class TimerHandler extends Handler implements ViewPager.OnPageChangeListener {
+
     interface TimerHandlerListener {
         void callBack();
     }
 
+    SparseIntArray specialInterval;
     long interval;
     boolean isInTouchMode;
     TimerHandlerListener listener;
+    UltraViewPager mUltraViewPager;
+    private int currentPosition = 0;
 
     static final int MSG_TIMER_ID = 87108;
 
-    TimerHandler(TimerHandlerListener listener, long interval) {
+    TimerHandler(UltraViewPager ultraViewPager, TimerHandlerListener listener, long interval) {
+        this.mUltraViewPager = ultraViewPager;
         this.listener = listener;
         this.interval = interval;
     }
@@ -51,9 +58,39 @@ class TimerHandler extends Handler {
     @Override
     public void handleMessage(Message msg) {
         if (MSG_TIMER_ID == msg.what) {
-            if (listener != null && !isInTouchMode)
+            if (listener != null && !isInTouchMode) {
                 listener.callBack();
-            sendEmptyMessageDelayed(MSG_TIMER_ID, interval);
+            }
         }
+    }
+
+    public void startTimer() {
+        sendEmptyMessageDelayed(TimerHandler.MSG_TIMER_ID, getNextInterval());
+    }
+
+    private long getNextInterval() {
+        long next = interval;
+        if (specialInterval != null) {
+            long has = specialInterval.get(currentPosition, -1);
+            if (has > 0) {
+                next = has;
+            }
+        }
+        return next;
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        currentPosition = mUltraViewPager.getCurrentItem();
+        sendEmptyMessageDelayed(MSG_TIMER_ID, getNextInterval());
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
     }
 }

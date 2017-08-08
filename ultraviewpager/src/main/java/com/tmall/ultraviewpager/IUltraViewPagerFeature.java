@@ -27,6 +27,7 @@
 package com.tmall.ultraviewpager;
 
 import android.graphics.Bitmap;
+import android.util.SparseIntArray;
 
 /**
  * Created by mikeafc on 15/11/30.
@@ -89,6 +90,13 @@ interface IUltraViewPagerFeature {
      * @param intervalInMillis  The interval time to scroll in milliseconds.
      */
     void setAutoScroll(int intervalInMillis);
+
+    /**
+     * Enable auto-scroll mode with special interval times
+     * @param intervalInMillis The default time to scroll
+     * @param intervalArray The special interval to scroll, in responding to each frame
+     */
+    void setAutoScroll(int intervalInMillis, SparseIntArray intervalArray);
 
     /**
      * Disable auto-scroll mode

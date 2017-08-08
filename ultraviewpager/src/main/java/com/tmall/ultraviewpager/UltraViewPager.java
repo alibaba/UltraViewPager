@@ -34,6 +34,7 @@ import android.os.Build;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.SparseIntArray;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -216,10 +217,12 @@ public class UltraViewPager extends RelativeLayout implements IUltraViewPagerFea
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if (timer != null) {
             final int action = ev.getAction();
-            if (action == MotionEvent.ACTION_DOWN)
+            if (action == MotionEvent.ACTION_DOWN) {
                 timer.isInTouchMode = true;
-            if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL)
+            }
+            if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
                 timer.isInTouchMode = false;
+            }
         }
         return super.dispatchTouchEvent(ev);
     }
@@ -296,12 +299,26 @@ public class UltraViewPager extends RelativeLayout implements IUltraViewPagerFea
 
     @Override
     public void setAutoScroll(int intervalInMillis) {
-        if (0 == intervalInMillis)
+        if (0 == intervalInMillis) {
             return;
+        }
         if (timer != null) {
             disableAutoScroll();
         }
-        timer = new TimerHandler(mTimerHandlerListener, intervalInMillis);
+        timer = new TimerHandler(this, mTimerHandlerListener, intervalInMillis);
+        startTimer();
+    }
+
+    @Override
+    public void setAutoScroll(int intervalInMillis, SparseIntArray intervalArray) {
+        if (0 == intervalInMillis) {
+            return;
+        }
+        if (timer != null) {
+            disableAutoScroll();
+        }
+        timer = new TimerHandler(this, mTimerHandlerListener, intervalInMillis);
+        timer.specialInterval = intervalArray;
         startTimer();
     }
 
@@ -442,16 +459,20 @@ public class UltraViewPager extends RelativeLayout implements IUltraViewPagerFea
     }
 
     private void startTimer() {
-        if (timer == null)
+        if (timer == null || viewPager == null) {
             return;
+        }
+        viewPager.addOnPageChangeListener(timer);
         timer.listener = mTimerHandlerListener;
         timer.removeCallbacksAndMessages(null);
-        timer.sendEmptyMessageDelayed(TimerHandler.MSG_TIMER_ID, timer.interval);
+        timer.startTimer();
     }
 
     private void stopTimer() {
-        if (timer == null)
+        if (timer == null || viewPager == null) {
             return;
+        }
+        viewPager.removeOnPageChangeListener(timer);
         timer.removeCallbacksAndMessages(null);
         timer.listener = null;
     }

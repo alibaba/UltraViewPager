@@ -30,6 +30,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
+import android.util.SparseIntArray;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -252,8 +253,12 @@ public class PagerActivity extends Activity implements AdapterView.OnItemSelecte
             ultraViewPager.setInfiniteLoop(isChecked);
         }
         if (buttonView == autoScrollCheckBox) {
-            if (isChecked)
-                ultraViewPager.setAutoScroll(2000);
+            if (isChecked) {
+                SparseIntArray special = new SparseIntArray();
+                special.put(0, 5000);
+                special.put(1, 1500);
+                ultraViewPager.setAutoScroll(2000, special);
+            }
             else
                 ultraViewPager.disableAutoScroll();
         }
