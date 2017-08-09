@@ -27,6 +27,10 @@ apply plugin: 'com.jfrog.artifactory'
 
 version = libraryVersion
 
+if (project.hasProperty('deployVersion')) {
+    version = project.getProperty('deployVersion')
+}
+
 if (project.hasProperty("android")) { // Android libraries
     task sourcesJar(type: Jar) {
         classifier = 'sources'
@@ -88,50 +92,54 @@ artifacts {
 bintray {
 //    user = properties.getProperty("bintray.user")
 //    key = properties.getProperty("bintray.apikey")
-    println "--->"
-    println project.getProperties()
     user = project.getProperty('bintrayUser')
     key = project.getProperty('bintrayApikey')
+}
 
-    configurations = ['archives']
-    pkg {
-        repo = bintrayRepo
-        name = bintrayName
-        desc = libraryDescription
-        websiteUrl = siteUrl
-        vcsUrl = gitUrl
-        licenses = allLicenses
-        publish = true
-        publicDownloadNumbers = true
-        version {
+uploadArchives {
+    if (version.endsWith("-SNAPSHOT")) {
+        artifactory {
+            contextUrl = 'http://oss.jfrog.org/artifactory' //The base Artifactory URL if not overridden by the publisher/resolver
+            resolve {
+                repository {
+                    repoKey = 'libs-release'
+                }
+            }
+            publish {
+                repository {
+                    repoKey = 'oss-snapshot-local' //The Artifactory repository key to publish to
+                    username = bintray.user
+                    password = bintray.key
+                    maven = true
+                }
+                defaults {
+                    //the name is the same with that defined in bintray.configurations
+                    publishConfigs('archives')
+                }
+            }
+        }
+    } else {
+        configurations = ['archives']
+        pkg {
+            repo = bintrayRepo
+            name = bintrayName
             desc = libraryDescription
-            gpg {
-                sign = true //Determines whether to GPG sign the files. The default is false
+            websiteUrl = siteUrl
+            vcsUrl = gitUrl
+            licenses = allLicenses
+            publish = true
+            publicDownloadNumbers = true
+            version {
+                desc = libraryDescription
+                gpg {
+                    sign = true //Determines whether to GPG sign the files. The default is false
 //                passphrase = properties.getProperty("bintray.gpg.password")
-                passphrase = project.getProperty('bintrayGPG')
-                //Optional. The passphrase for GPG signing'
+                    passphrase = project.getProperty('bintrayGPG')
+                    //Optional. The passphrase for GPG signing'
+                }
             }
         }
     }
 }
 
-artifactory {
-    contextUrl = 'http://oss.jfrog.org/artifactory' //The base Artifactory URL if not overridden by the publisher/resolver
-    resolve {
-        repository {
-            repoKey = 'libs-release'
-        }
-    }
-    publish {
-        repository {
-            repoKey = 'oss-snapshot-local' //The Artifactory repository key to publish to
-            username = bintray.user
-            password = bintray.key
-            maven = true
-        }
-        defaults {
-            //这里的名字和前面bintray.configurations的值一致即可，会将其包含的输出上传到jfrog上去
-            publishConfigs('archives')
-        }
-    }
-}
+
