@@ -88,8 +88,8 @@ artifacts {
 bintray {
 //    user = properties.getProperty("bintray.user")
 //    key = properties.getProperty("bintray.apikey")
-    user = bintrayUser
-    key = bintrayApikey
+    user = project.getProperty('bintrayUser')
+    key = project.getProperty('bintrayApikey')
 
     configurations = ['archives']
     pkg {
@@ -106,7 +106,7 @@ bintray {
             gpg {
                 sign = true //Determines whether to GPG sign the files. The default is false
 //                passphrase = properties.getProperty("bintray.gpg.password")
-                passphrase = bintrayGPG
+                passphrase = project.getProperty('bintrayGPG')
                 //Optional. The passphrase for GPG signing'
             }
         }
