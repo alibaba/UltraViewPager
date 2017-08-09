@@ -132,7 +132,7 @@ artifactory {
             maven = true
         }
         defaults {
-            //这里的名字和前面bintray.configurations的值一致即可，会将其包含的输出上传到jfrog上去
+//            the name is the same with that defined in bintray.configurations
             publishConfigs('archives')
         }
     }
