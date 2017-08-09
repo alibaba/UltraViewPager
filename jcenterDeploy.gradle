@@ -88,6 +88,8 @@ artifacts {
 bintray {
 //    user = properties.getProperty("bintray.user")
 //    key = properties.getProperty("bintray.apikey")
+    println "--->"
+    println project.getProperties()
     user = project.getProperty('bintrayUser')
     key = project.getProperty('bintrayApikey')
 
