@@ -214,7 +214,7 @@ public class UltraViewPagerView extends ViewPager implements UltraViewPagerAdapt
 
     @Override
     public int getCurrentItem() {
-        if (pagerAdapter.getCount() != 0) {
+        if (pagerAdapter != null && pagerAdapter.getCount() != 0) {
             int position = super.getCurrentItem();
             return position % pagerAdapter.getRealCount();
         }
