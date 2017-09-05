@@ -234,17 +234,15 @@ class UltraViewPagerAdapter extends PagerAdapter {
     }
 
     void setEnableLoop(boolean status) {
-        if (this.enableLoop != status) {
-            this.enableLoop = status;
-            notifyDataSetChanged();
-            if (!status) {
-                centerListener.resetPosition();
-            } else {
-                try {
-                    centerListener.center();
-                } catch (Exception e) {
+        this.enableLoop = status;
+        notifyDataSetChanged();
+        if (!status) {
+            centerListener.resetPosition();
+        } else {
+            try {
+                centerListener.center();
+            } catch (Exception e) {
 
-                }
             }
         }
     }

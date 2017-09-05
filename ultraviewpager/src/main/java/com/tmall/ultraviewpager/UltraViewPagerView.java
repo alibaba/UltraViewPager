@@ -267,11 +267,9 @@ public class UltraViewPagerView extends ViewPager implements UltraViewPagerAdapt
     }
 
     public void setEnableLoop(boolean status) {
-        if (enableLoop != status) {
-            enableLoop = status;
-            if (pagerAdapter != null) {
-                pagerAdapter.setEnableLoop(enableLoop);
-            }
+        enableLoop = status;
+        if (pagerAdapter != null) {
+            pagerAdapter.setEnableLoop(enableLoop);
         }
     }
 
