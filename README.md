@@ -100,7 +100,7 @@ For other API reference,see [this](ATTRIBUTES.md) to read more.
 
 #### DEMO
 
-[Demo Project](https://github.com/alibaba/UltraViewPager/tree/master/examples)
+[Demo Project](https://github.com/alibaba/UltraViewPager/tree/master/sample)
 
 # Contributing
 
