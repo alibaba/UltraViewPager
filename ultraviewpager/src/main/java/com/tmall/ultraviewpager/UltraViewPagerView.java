@@ -34,6 +34,7 @@ import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.tmall.ultraviewpager.transformer.UltraVerticalTransformer;
 
 /**
@@ -234,7 +235,7 @@ public class UltraViewPagerView extends ViewPager implements UltraViewPagerAdapt
     /**
      * Set the currently selected page.
      *
-     * @param item Item index to select
+     * @param item         Item index to select
      * @param smoothScroll True to smoothly scroll to the new item, false to transition immediately
      */
     void setCurrentItemFake(int item, boolean smoothScroll) {
@@ -255,15 +256,7 @@ public class UltraViewPagerView extends ViewPager implements UltraViewPagerAdapt
             needsMeasurePage = true;
         }
         float pageMargin = (1 - ratio) * getResources().getDisplayMetrics().widthPixels;
-        if(scrollMode == UltraViewPager.ScrollMode.VERTICAL){
-            setPageMargin((int) (pageMargin));
-        }else{
-            setPageMargin((int) (-(pageMargin + convertDp2Px(getContext(), 1f))));
-        }
-    }
-
-    private int convertDp2Px(Context context, float dp) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
+        setPageMargin((int) (pageMargin));
     }
 
     public void setEnableLoop(boolean status) {
