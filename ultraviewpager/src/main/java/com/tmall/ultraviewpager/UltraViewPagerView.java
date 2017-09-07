@@ -244,7 +244,7 @@ public class UltraViewPagerView extends ViewPager implements UltraViewPagerAdapt
     /**
      * Get the currently selected page.
      */
-    int getCurrentItemFake() {
+    public int getCurrentItemFake() {
         return super.getCurrentItem();
     }
 
