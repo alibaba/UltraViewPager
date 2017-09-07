@@ -245,7 +245,6 @@ class UltraViewPagerAdapter extends PagerAdapter {
 
             }
         }
-
     }
 
     boolean isEnableLoop() {

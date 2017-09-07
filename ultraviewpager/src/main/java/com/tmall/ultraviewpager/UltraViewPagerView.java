@@ -187,13 +187,15 @@ public class UltraViewPagerView extends ViewPager implements UltraViewPagerAdapt
     @Override
     public void setAdapter(PagerAdapter adapter) {
         if (adapter != null) {
-            pagerAdapter = new UltraViewPagerAdapter(adapter);
-            pagerAdapter.setCenterListener(this);
-            pagerAdapter.setEnableLoop(enableLoop);
-            pagerAdapter.setMultiScrRatio(multiScrRatio);
-            needsMeasurePage = true;
-            constrainLength = 0;
-            super.setAdapter(pagerAdapter);
+            if (pagerAdapter == null || pagerAdapter.getAdapter() != adapter) {
+                pagerAdapter = new UltraViewPagerAdapter(adapter);
+                pagerAdapter.setCenterListener(this);
+                pagerAdapter.setEnableLoop(enableLoop);
+                pagerAdapter.setMultiScrRatio(multiScrRatio);
+                needsMeasurePage = true;
+                constrainLength = 0;
+                super.setAdapter(pagerAdapter);
+            }
         } else {
             super.setAdapter(adapter);
         }
@@ -258,9 +260,6 @@ public class UltraViewPagerView extends ViewPager implements UltraViewPagerAdapt
         }else{
             setPageMargin((int) (-(pageMargin + convertDp2Px(getContext(), 1f))));
         }
-
-
-
     }
 
     private int convertDp2Px(Context context, float dp) {
