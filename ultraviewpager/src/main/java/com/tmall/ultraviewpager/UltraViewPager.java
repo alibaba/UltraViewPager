@@ -368,15 +368,33 @@ public class UltraViewPager extends RelativeLayout implements IUltraViewPagerFea
     }
 
     @Override
-    public void scrollNextPage() {
+    public boolean scrollLastPage() {
+        boolean isChange = false;
+        if (viewPager != null && viewPager.getAdapter() != null && viewPager.getAdapter().getCount() > 0) {
+            final int curr = viewPager.getCurrentItemFake();
+            int lastPage = 0;
+            if (curr > 0) {
+                lastPage = curr - 1;
+                isChange = true;
+            }
+            viewPager.setCurrentItemFake(lastPage, true);
+        }
+        return isChange;
+    }
+
+    @Override
+    public boolean scrollNextPage() {
+        boolean isChange = false;
         if (viewPager != null && viewPager.getAdapter() != null && viewPager.getAdapter().getCount() > 0) {
             final int curr = viewPager.getCurrentItemFake();
             int nextPage = 0;
             if (curr < viewPager.getAdapter().getCount() - 1) {
                 nextPage = curr + 1;
+                isChange = true;
             }
             viewPager.setCurrentItemFake(nextPage, true);
         }
+        return isChange;
     }
 
     @Override
@@ -478,12 +496,12 @@ public class UltraViewPager extends RelativeLayout implements IUltraViewPagerFea
         }
         timer.listener = mTimerHandlerListener;
         timer.removeCallbacksAndMessages(null);
-		timer.tick(0);
+        timer.tick(0);
         timer.isStopped = false;
     }
 
     private void stopTimer() {
-        if (timer == null  || viewPager == null || timer.isStopped) {
+        if (timer == null || viewPager == null || timer.isStopped) {
             return;
         }
         timer.removeCallbacksAndMessages(null);
