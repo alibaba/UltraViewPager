@@ -145,9 +145,14 @@ interface IUltraViewPagerFeature {
     void disableScrollDirection(UltraViewPager.ScrollDirection direction);
 
     /**
+     * Scroll to the last page, and return to the first page when the last page is reached.
+     */
+    boolean scrollLastPage();
+
+    /**
      * Scroll to the next page, and return to the first page when the last page is reached.
      */
-    void scrollNextPage();
+    boolean scrollNextPage();
 
     /**
      * Set multi-screen mode , the aspect ratio of PageViewer should less than or equal to 1.0f

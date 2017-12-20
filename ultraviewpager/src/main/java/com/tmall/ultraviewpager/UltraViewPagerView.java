@@ -238,7 +238,7 @@ public class UltraViewPagerView extends ViewPager implements UltraViewPagerAdapt
      * @param item         Item index to select
      * @param smoothScroll True to smoothly scroll to the new item, false to transition immediately
      */
-    void setCurrentItemFake(int item, boolean smoothScroll) {
+    public void setCurrentItemFake(int item, boolean smoothScroll) {
         super.setCurrentItem(item, smoothScroll);
     }
 
