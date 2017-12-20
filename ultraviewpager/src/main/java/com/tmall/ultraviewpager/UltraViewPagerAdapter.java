@@ -238,11 +238,11 @@ public class UltraViewPagerAdapter extends PagerAdapter {
         if (!status) {
             centerListener.resetPosition();
         } else {
-            try {
-                centerListener.center();
-            } catch (Exception e) {
-
-            }
+            //try {
+            //    centerListener.center();
+            //} catch (Exception e) {
+            //
+            //}
         }
     }
 
