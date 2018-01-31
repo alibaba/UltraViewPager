@@ -294,7 +294,7 @@ public class UltraViewPager extends RelativeLayout implements IUltraViewPagerFea
     private TimerHandler.TimerHandlerListener mTimerHandlerListener = new TimerHandler.TimerHandlerListener() {
         @Override
         public int getNextItem() {
-            return getNextItem();
+            return UltraViewPager.this.getNextItem();
         }
 
         @Override
