@@ -254,7 +254,7 @@ public class UltraViewPagerAdapter extends PagerAdapter {
         multiScrRatio = ratio;
     }
 
-    boolean isEnableMultiScr() {
+    public boolean isEnableMultiScr() {
         return !Float.isNaN(multiScrRatio) && multiScrRatio < 1f;
     }
 
@@ -262,7 +262,7 @@ public class UltraViewPagerAdapter extends PagerAdapter {
         centerListener = listener;
     }
 
-    void setInfiniteRatio(int infiniteRatio) {
+    public void setInfiniteRatio(int infiniteRatio) {
         this.infiniteRatio = infiniteRatio;
     }
 }
