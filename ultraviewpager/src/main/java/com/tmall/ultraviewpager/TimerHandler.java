@@ -35,7 +35,7 @@ import android.util.SparseIntArray;
  */
 public class TimerHandler extends Handler {
 
-    interface TimerHandlerListener {
+    public interface TimerHandlerListener {
         int getNextItem();
         void callBack();
     }
@@ -78,4 +78,19 @@ public class TimerHandler extends Handler {
         return next;
     }
 
+    public boolean isStopped() {
+        return isStopped;
+    }
+
+    public void setStopped(boolean stopped) {
+        isStopped = stopped;
+    }
+
+    public void setListener(TimerHandlerListener listener) {
+        this.listener = listener;
+    }
+
+    public void setSpecialInterval(SparseIntArray specialInterval) {
+        this.specialInterval = specialInterval;
+    }
 }
