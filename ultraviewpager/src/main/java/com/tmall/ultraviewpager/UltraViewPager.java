@@ -293,6 +293,11 @@ public class UltraViewPager extends RelativeLayout implements IUltraViewPagerFea
 
     private TimerHandler.TimerHandlerListener mTimerHandlerListener = new TimerHandler.TimerHandlerListener() {
         @Override
+        public int getNextItem() {
+            return getNextItem();
+        }
+
+        @Override
         public void callBack() {
             scrollNextPage();
         }
@@ -306,7 +311,7 @@ public class UltraViewPager extends RelativeLayout implements IUltraViewPagerFea
         if (timer != null) {
             disableAutoScroll();
         }
-        timer = new TimerHandler(this, mTimerHandlerListener, intervalInMillis);
+        timer = new TimerHandler(mTimerHandlerListener, intervalInMillis);
         startTimer();
     }
 
@@ -318,7 +323,7 @@ public class UltraViewPager extends RelativeLayout implements IUltraViewPagerFea
         if (timer != null) {
             disableAutoScroll();
         }
-        timer = new TimerHandler(this, mTimerHandlerListener, intervalInMillis);
+        timer = new TimerHandler(mTimerHandlerListener, intervalInMillis);
         timer.specialInterval = intervalArray;
         startTimer();
     }

@@ -33,9 +33,10 @@ import android.util.SparseIntArray;
 /**
  * Created by mikeafc on 15/11/25.
  */
-class TimerHandler extends Handler {
+public class TimerHandler extends Handler {
 
     interface TimerHandlerListener {
+        int getNextItem();
         void callBack();
     }
 
@@ -43,12 +44,10 @@ class TimerHandler extends Handler {
     long interval;
     boolean isStopped = true;
     TimerHandlerListener listener;
-    UltraViewPager mUltraViewPager;
 
     static final int MSG_TIMER_ID = 87108;
 
-    TimerHandler(UltraViewPager ultraViewPager, TimerHandlerListener listener, long interval) {
-        this.mUltraViewPager = ultraViewPager;
+    public TimerHandler(TimerHandlerListener listener, long interval) {
         this.listener = listener;
         this.interval = interval;
     }
@@ -56,11 +55,11 @@ class TimerHandler extends Handler {
     @Override
     public void handleMessage(Message msg) {
         if (MSG_TIMER_ID == msg.what) {
-            int nextIndex = mUltraViewPager.getNextItem();
             if (listener != null) {
+                int nextIndex = listener.getNextItem();
                 listener.callBack();
+                tick(nextIndex);
             }
-            tick(nextIndex);
         }
     }
 
