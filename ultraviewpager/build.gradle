@@ -26,20 +26,40 @@
 
 apply plugin: 'com.android.library'
 
+buildscript {
+    repositories {
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+        maven { url "http://oss.jfrog.org/oss-snapshot-local/" }
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.0'
+    }
+}
+
+repositories {
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+    maven { url "http://oss.jfrog.org/oss-snapshot-local/" }
+    jcenter()
+    mavenLocal()
+}
+
 ext {
     bintrayRepo = 'Tangram'
     bintrayName = 'UltraViewPager'
 
-    publishedGroupId = GROUP
-    libraryName = ARTIFACT
-    artifact = ARTIFACT
+    publishedGroupId = project.hasProperty('GROUP') ? GROUP : ''
+    libraryName = project.hasProperty('ARTIFACT') ? ARTIFACT : ''
+    artifact = project.hasProperty('ARTIFACT') ? ARTIFACT : ''
 
     libraryDescription = 'UltraViewPager is an extension for ViewPager to provide multiple features in a single ViewPager.'
 
     siteUrl = 'https://github.com/alibaba/UltraViewPager'
     gitUrl = 'https://github.com/alibaba/UltraViewPager.git'
 
-    libraryVersion = VERSION_NAME
+    libraryVersion = project.hasProperty('VERSION_NAME') ? VERSION_NAME : ''
 
     developerId = 'longerian'
     developerName = 'longerian'
