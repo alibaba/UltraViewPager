@@ -256,7 +256,11 @@ public class UltraViewPagerView extends ViewPager implements UltraViewPagerAdapt
             needsMeasurePage = true;
         }
         float pageMargin = (1 - ratio) * getResources().getDisplayMetrics().widthPixels;
-        setPageMargin((int) (pageMargin));
+        if (scrollMode == UltraViewPager.ScrollMode.VERTICAL) {
+            setPageMargin((int) pageMargin);
+        } else {
+            setPageMargin((int) -pageMargin);
+        }
     }
 
     public void setEnableLoop(boolean status) {
