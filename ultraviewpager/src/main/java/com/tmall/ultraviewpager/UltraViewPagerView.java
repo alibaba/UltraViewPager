@@ -84,6 +84,9 @@ public class UltraViewPagerView extends ViewPager implements UltraViewPagerAdapt
     }
 
     protected void onMeasurePage(int widthMeasureSpec, int heightMeasureSpec) {
+        if (pagerAdapter == null) {
+            return;
+        }
         View child = pagerAdapter.getViewAtPosition(getCurrentItem());
         if (child == null) {
             child = getChildAt(0);

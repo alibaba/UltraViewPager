@@ -39,7 +39,7 @@
             <enum name="backward" value="1" />
             <enum name="forward" value="2" />
         </attr>
-        <attr name="upv_multiscreen" format="boolean" />
+        <attr name="upv_multiscreen" format="float" />
         <attr name="upv_automeasure" format="boolean" />
         <attr name="upv_itemratio" format="float" />
     </declare-styleable>
