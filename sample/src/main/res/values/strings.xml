@@ -31,7 +31,6 @@
         <item>None</item>
         <item>Circle</item>
         <item>Icon</item>
-        <item>Count</item>
     </string-array>
     <string-array name="indicator_gravity_hor">
         <item>Left</item>
