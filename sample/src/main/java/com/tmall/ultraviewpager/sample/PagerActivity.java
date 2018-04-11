@@ -70,31 +70,10 @@ public class PagerActivity extends Activity implements AdapterView.OnItemSelecte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pager);
 
-        int style = getIntent().getIntExtra("style", 1);
+        int style = Integer.parseInt(getIntent().getStringExtra("style"));
+        String name = getIntent().getStringExtra("name");
         ultraViewPager = (UltraViewPager) findViewById(R.id.ultra_viewpager);
-
-        switch (style){
-            case 1:
-                setTitle("Horizontal Demo");
-                break;
-            case 2:
-                setTitle("Vertical Demo");
-                break;
-            case 3:
-                setTitle("MultiScreen_H Demo");
-                break;
-            case 4:
-                setTitle("MultiScreen_V Demo");
-                break;
-            case 5:
-                setTitle("ScaleTransformer Demo");
-                break;
-            case 6:
-                setTitle("DepthTransformer Demo");
-                break;
-            default:
-                break;
-        }
+        setTitle(name);
 
 //        defaultUltraViewPager();
 
@@ -121,8 +100,8 @@ public class PagerActivity extends Activity implements AdapterView.OnItemSelecte
                 ultraViewPager.setAdapter(adapter);
                 ultraViewPager.setMultiScreen(0.6f);
                 ultraViewPager.setItemRatio(1.0f);
-//                ultraViewPager.setRatio(2.0f);
-//                ultraViewPager.setMaxHeight(800);
+                ultraViewPager.setRatio(2.0f);
+                ultraViewPager.setMaxHeight(800);
                 ultraViewPager.setAutoMeasureHeight(true);
                 gravity_indicator = UltraViewPager.Orientation.HORIZONTAL;
                 if (style == 5) {
@@ -259,8 +238,7 @@ public class PagerActivity extends Activity implements AdapterView.OnItemSelecte
                 special.put(0, 5000);
                 special.put(1, 1500);
                 ultraViewPager.setAutoScroll(2000, special);
-            }
-            else
+            } else
                 ultraViewPager.disableAutoScroll();
         }
     }
@@ -273,8 +251,8 @@ public class PagerActivity extends Activity implements AdapterView.OnItemSelecte
     /**
      *
      */
-    private void defaultUltraViewPager(){
-        UltraViewPager ultraViewPager = (UltraViewPager)findViewById(R.id.ultra_viewpager);
+    private void defaultUltraViewPager() {
+        UltraViewPager ultraViewPager = (UltraViewPager) findViewById(R.id.ultra_viewpager);
         ultraViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
         //initialize UltraPagerAdapter，and add child view to UltraViewPager
         PagerAdapter adapter = new UltraPagerAdapter(false);
@@ -287,7 +265,7 @@ public class PagerActivity extends Activity implements AdapterView.OnItemSelecte
                 .setOrientation(UltraViewPager.Orientation.HORIZONTAL)
                 .setFocusColor(Color.GREEN)
                 .setNormalColor(Color.WHITE)
-                .setRadius((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics()));
+                .setRadius((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics()));
         //set the alignment
         ultraViewPager.getIndicator().setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM);
         //construct built-in indicator, and add it to  UltraViewPager
