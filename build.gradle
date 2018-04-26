@@ -28,17 +28,18 @@
 
 buildscript {
     repositories {
+        google()
         maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
         maven { url "http://oss.jfrog.org/oss-snapshot-local/" }
         mavenCentral()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.2'
-        classpath 'com.github.xfumihiro.view-inspector:view-inspector-plugin:0.1.1'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.4'
-        classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:4.0.0'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
+        classpath 'com.android.tools.build:gradle:3.1.2'
+        classpath 'com.github.xfumihiro.view-inspector:view-inspector-plugin:0.2.0'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
+        classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:4.7.1'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -46,6 +47,7 @@ buildscript {
 
 allprojects {
     repositories {
+        google()
         maven{url'https://oss.sonatype.org/content/repositories/snapshots/'}
         maven { url "http://oss.jfrog.org/oss-snapshot-local/" }
         mavenCentral()

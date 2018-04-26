@@ -27,12 +27,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 23
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
     }
@@ -45,7 +45,8 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':ultraviewpager')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':ultraviewpager')
+    implementation 'com.android.support:support-core-ui:27.1.1'
 
 }
