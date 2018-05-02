@@ -448,6 +448,16 @@ public class UltraViewPager extends RelativeLayout implements IUltraViewPagerFea
         return viewPager.getAdapter() == null ? null : ((UltraViewPagerAdapter) viewPager.getAdapter()).getAdapter();
     }
 
+    public PagerAdapter getWrapAdapter() {
+        return viewPager.getAdapter();
+    }
+
+    public void refresh() {
+        if (viewPager.getAdapter() != null) {
+            viewPager.getAdapter().notifyDataSetChanged();
+        }
+    }
+
     public void setOnPageChangeListener(ViewPager.OnPageChangeListener listener) {
         if (pagerIndicator == null) {
             //avoid registering the same listener twice
