@@ -28,11 +28,11 @@ UltraViewPager继承自RelativeLayout，将ViewPager和indicator置于其中，�
 竖向滑动是通过在ViewPager的onInterceptTouchEvent和onTouchEvent中交换横竖向的event location，同时设置特殊PageTransformer实现，详见源码.
 
 #### 使用方法
-版本请参考mvn repository上的最新版本（目前最新版本是1.0.7.6），最新的 aar 都会发布到 jcenter 和 MavenCentral 上，确保配置了这两个仓库源，然后引入aar依赖：
+版本请参考mvn repository上的最新版本（目前最新版本是1.0.7.7），最新的 aar 都会发布到 jcenter 和 MavenCentral 上，确保配置了这两个仓库源，然后引入aar依赖：
 
 ```
 //gradle
-compile ('com.alibaba.android:ultraviewpager:1.0.7.6@aar') {
+compile ('com.alibaba.android:ultraviewpager:1.0.7.7@aar') {
 	transitive = true
 }
 
@@ -45,7 +45,7 @@ compile ('com.alibaba.android:ultraviewpager:1.0.7.6@aar') {
 <dependency>
   <groupId>com.alibaba.android</groupId>
   <artifactId>ultraviewpager</artifactId>
-  <version>1.0.7.6</version>
+  <version>1.0.7.7</version>
   <type>aar</type>
 </dependency>
 
@@ -94,6 +94,12 @@ ultraViewPager.setAutoScroll(2000);
 ```
 Api接口详情请参考[文档](ATTRIBUTES-ch.md)
 
+#### FAQ
+* 如何刷新数据? 可以使用一下三种方法的任意一种:
+    * ultraViewPager.refresh();
+    * ultraViewPager.getWrapAdapter().notifyDataSetChanged();
+    * mViewPager.getViewPager().getAdapter().notifyDataSetChanged();
+    
 #### DEMO
 
 [Demo工程](https://github.com/alibaba/UltraViewPager/tree/master/sample)

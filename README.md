@@ -31,13 +31,13 @@ In order to achieve vertical scroll, through exchanging MotionEvent in onInterce
 
 #### Usage
 
-Please find the latest version(1.0.7.6 so far) in maven repository. The newest version has been upload to jcenter and MavenCantral, make sure you have added at least one of these repositories.
+Please find the latest version(1.0.7.7 so far) in maven repository. The newest version has been upload to jcenter and MavenCantral, make sure you have added at least one of these repositories.
 
 Using Gradle:
 
 ```
 //gradle
-compile ('com.alibaba.android:ultraviewpager:1.0.7.6@aar') {
+compile ('com.alibaba.android:ultraviewpager:1.0.7.7@aar') {
 	transitive = true
 }
 ```
@@ -48,7 +48,7 @@ or grab via Maven:
 <dependency>
   <groupId>com.alibaba.android</groupId>
   <artifactId>ultraviewpager</artifactId>
-  <version>1.0.7.6</version>
+  <version>1.0.7.7</version>
   <type>aar</type>
 </dependency>
 
@@ -97,6 +97,12 @@ ultraViewPager.setAutoScroll(2000);
 
 ```
 For other API reference,see [this](ATTRIBUTES.md) to read more.
+
+#### FAQ
+* How to refresh data? you can refresh data by any one below three method:
+    * ultraViewPager.refresh();
+    * ultraViewPager.getWrapAdapter().notifyDataSetChanged();
+    * mViewPager.getViewPager().getAdapter().notifyDataSetChanged();
 
 #### DEMO
 
