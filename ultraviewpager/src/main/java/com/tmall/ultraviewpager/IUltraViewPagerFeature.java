@@ -28,6 +28,7 @@ package com.tmall.ultraviewpager;
 
 import android.graphics.Bitmap;
 import android.util.SparseIntArray;
+import android.view.animation.Interpolator;
 
 /**
  * Created by mikeafc on 15/11/30.
@@ -96,6 +97,21 @@ interface IUltraViewPagerFeature {
      * @param intervalArray The special interval to scroll, in responding to each frame
      */
     void setAutoScroll(int intervalInMillis, SparseIntArray intervalArray);
+
+    /**
+     * Set the scroll speed for this ViewPager.
+     *
+     * @param duration The default duration to scroll
+     */
+    void setAutoScrollSpeed(int duration);
+
+    /**
+     * Set the scroll speed and interpolator for this ViewPager.
+     *
+     * @param duration     The default duration to scroll
+     * @param interpolator The default interpolator to scroll
+     */
+    void setAutoScrollSpeed(int duration, Interpolator interpolator);
 
     /**
      * Disable auto-scroll mode
