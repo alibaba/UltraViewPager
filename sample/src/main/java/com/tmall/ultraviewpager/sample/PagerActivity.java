@@ -234,6 +234,7 @@ public class PagerActivity extends Activity implements AdapterView.OnItemSelecte
         }
         if (buttonView == autoScrollCheckBox) {
             if (isChecked) {
+                ultraViewPager.setAutoScrollSpeed(1000);
                 SparseIntArray special = new SparseIntArray();
                 special.put(0, 5000);
                 special.put(1, 1500);
