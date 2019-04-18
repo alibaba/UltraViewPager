@@ -30,12 +30,14 @@ import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Interpolator;
 
 import com.tmall.ultraviewpager.transformer.UltraVerticalTransformer;
+
+import java.lang.reflect.Field;
 
 /**
  * Created by mikeafc on 15/11/25.
@@ -263,6 +265,25 @@ public class UltraViewPagerView extends ViewPager implements UltraViewPagerAdapt
             setPageMargin((int) pageMargin);
         } else {
             setPageMargin((int) -pageMargin);
+        }
+    }
+
+    public void setAutoScrollSpeed(int duration) {
+        setAutoScrollSpeed(duration, null);
+    }
+
+    public void setAutoScrollSpeed(int duration, Interpolator interpolator) {
+        if (duration >= 0) {
+            try {
+                Field mScroller = ViewPager.class.getDeclaredField("mScroller");
+                mScroller.setAccessible(true);
+                UltraViewPagerScroller scroller = new UltraViewPagerScroller(getContext(),
+                        interpolator);
+                scroller.setScrollDuration(duration);
+                mScroller.set(this, scroller);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
