@@ -28,16 +28,14 @@ package com.tmall.ultraviewpager;
 
 import android.database.DataSetObserver;
 import android.os.Parcelable;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.PagerAdapter;
+
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by mikeafc on 15/11/25.

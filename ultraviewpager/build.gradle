@@ -94,8 +94,10 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:support-v4:23.1.1@aar'
-    compile 'com.android.support:recyclerview-v7:23.1.1@aar'
+    compile 'androidx.legacy:legacy-support-v4:1.0.0@aar'
+    compile 'androidx.recyclerview:recyclerview:1.0.0@aar'
+    implementation 'androidx.viewpager:viewpager:1.0.0'
+    implementation 'com.android.support:appcompat-v7'
 }
 
 File deployConfig = rootProject.file('jcenterInstall.gradle')
