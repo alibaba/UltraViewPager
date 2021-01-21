@@ -27,12 +27,13 @@
 package com.tmall.ultraviewpager.sample;
 
 import android.graphics.Color;
-import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.viewpager.widget.PagerAdapter;
 
 /**
  * Created by mikeafc on 15/11/26.

@@ -28,16 +28,13 @@ package com.tmall.ultraviewpager;
 
 import android.database.DataSetObserver;
 import android.os.Parcelable;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
-import java.util.HashMap;
-import java.util.Map;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.PagerAdapter;
 
 /**
  * Created by mikeafc on 15/11/25.
@@ -93,10 +90,12 @@ public class UltraViewPagerAdapter extends PagerAdapter {
         Object item = adapter.instantiateItem(container, realPosition);
         //TODO
         View childView = null;
-        if (item instanceof View)
+        if (item instanceof View) {
             childView = (View) item;
-        if (item instanceof RecyclerView.ViewHolder)
+        }
+        if (item instanceof RecyclerView.ViewHolder) {
             childView = ((RecyclerView.ViewHolder) item).itemView;
+        }
 
         int childCount = container.getChildCount();
         for (int i = 0; i < childCount; i++) {
@@ -137,8 +136,9 @@ public class UltraViewPagerAdapter extends PagerAdapter {
         int realPosition = position;
 
         //TODO
-        if (enableLoop && adapter.getCount() != 0)
+        if (enableLoop && adapter.getCount() != 0) {
             realPosition = position % adapter.getCount();
+        }
 
         if (isEnableMultiScr() && object instanceof RelativeLayout) {
             View child = ((RelativeLayout) object).getChildAt(0);

@@ -26,27 +26,6 @@
 
 apply plugin: 'com.android.library'
 
-buildscript {
-    repositories {
-        google()
-        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
-        maven { url "http://oss.jfrog.org/oss-snapshot-local/" }
-        mavenCentral()
-        jcenter()
-    }
-
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.2'
-    }
-}
-
-repositories {
-    google()
-    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
-    maven { url "http://oss.jfrog.org/oss-snapshot-local/" }
-    jcenter()
-    mavenLocal()
-}
 
 ext {
     bintrayRepo = 'Tangram'
@@ -72,18 +51,14 @@ ext {
     allLicenses = ["MIT"]
 }
 
-def VERSION = System.properties['version'] ?: '10'
-def VERSION_NAME = System.properties['versionName'] ?: '0.1.0'
 
 android {
-    compileSdkVersion Integer.parseInt(System.properties['compileSdkVersion'] ?: '27')
-    buildToolsVersion System.properties['buildToolsVersion'] ?: '27.0.3'
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion Integer.parseInt(System.properties['targetSdkVersion'] ?: '27')
-        versionCode Integer.parseInt(VERSION)
-        versionName VERSION_NAME
+        targetSdkVersion 30
     }
     buildTypes {
         release {
@@ -94,11 +69,8 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    testImplementation 'junit:junit:4.12'
-    implementation 'com.android.support:support-core-ui:27.1.1@aar'
-    implementation 'com.android.support:support-compat:27.1.1@aar'
-    implementation 'com.android.support:recyclerview-v7:27.1.1@aar'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.viewpager:viewpager:1.0.0'
 }
 
 File deployConfig = rootProject.file('jcenterInstall.gradle')

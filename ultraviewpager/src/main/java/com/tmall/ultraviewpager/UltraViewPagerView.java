@@ -27,13 +27,13 @@
 package com.tmall.ultraviewpager;
 
 import android.content.Context;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.tmall.ultraviewpager.transformer.UltraVerticalTransformer;
 
@@ -283,8 +283,9 @@ public class UltraViewPagerView extends ViewPager implements UltraViewPagerAdapt
 
     public void setScrollMode(UltraViewPager.ScrollMode scrollMode) {
         this.scrollMode = scrollMode;
-        if (scrollMode == UltraViewPager.ScrollMode.VERTICAL)
+        if (scrollMode == UltraViewPager.ScrollMode.VERTICAL) {
             setPageTransformer(false, new UltraVerticalTransformer());
+        }
     }
 
     public UltraViewPager.ScrollMode getScrollMode() {
@@ -345,8 +346,9 @@ public class UltraViewPagerView extends ViewPager implements UltraViewPagerAdapt
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        if (scrollMode == UltraViewPager.ScrollMode.VERTICAL)
+        if (scrollMode == UltraViewPager.ScrollMode.VERTICAL) {
             return super.onTouchEvent(swapTouchEvent(ev));
+        }
         return super.onTouchEvent(ev);
     }
 }

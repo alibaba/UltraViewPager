@@ -29,7 +29,6 @@ package com.tmall.ultraviewpager.sample;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
 import android.util.SparseIntArray;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -42,6 +41,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+
+import androidx.viewpager.widget.PagerAdapter;
 
 import com.tmall.ultraviewpager.UltraViewPager;
 import com.tmall.ultraviewpager.transformer.UltraDepthScaleTransformer;

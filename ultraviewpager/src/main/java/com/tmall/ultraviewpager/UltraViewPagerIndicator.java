@@ -31,11 +31,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
+
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * Created by mikeafc on 15/11/25.
@@ -111,12 +112,14 @@ public class UltraViewPagerIndicator extends View implements ViewPager.OnPageCha
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        if (viewPager == null || viewPager.getAdapter() == null)
+        if (viewPager == null || viewPager.getAdapter() == null) {
             return;
+        }
 
         final int count = ((UltraViewPagerAdapter) viewPager.getAdapter()).getRealCount();
-        if (count == 0)
+        if (count == 0) {
             return;
+        }
 
         int longSize;
         int shortSize;
@@ -215,8 +218,9 @@ public class UltraViewPagerIndicator extends View implements ViewPager.OnPageCha
             }
 
             if (isDrawResIndicator()) {
-                if (iLoop == viewPager.getCurrentItem())
+                if (iLoop == viewPager.getCurrentItem()) {
                     continue;
+                }
                 canvas.drawBitmap(normalBitmap, dX, dY, paintFill);
             } else {
                 // Only paint fill if not completely transparent
@@ -234,8 +238,9 @@ public class UltraViewPagerIndicator extends View implements ViewPager.OnPageCha
 
         //Draw the filled circle according to the current scroll
         float cx = (viewPager.getCurrentItem()) * (itemWidth * widthRatio + indicatorPadding);
-        if (animateIndicator)
+        if (animateIndicator) {
             cx += pageOffset * itemWidth;
+        }
         if (orientation == UltraViewPager.Orientation.HORIZONTAL) {
             dX = longOffset + cx;
             dY = shortOffset;
