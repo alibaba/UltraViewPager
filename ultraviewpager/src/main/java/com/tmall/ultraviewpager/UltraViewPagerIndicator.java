@@ -31,11 +31,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
+
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * Created by mikeafc on 15/11/25.
